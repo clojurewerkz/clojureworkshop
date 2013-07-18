@@ -265,9 +265,13 @@ only screen and (     -o-min-device-pixel-ratio: 2/1) {
 -------------------------------------------------- */
 
 .marketing {
-  text-align: center;
   color: #5a5a5a;
 }
+
+.marketing h2, .centered {
+    text-align: center;
+}
+
 .marketing h1 {
   margin: 60px 0 10px;
   font-size: 60px;
@@ -276,7 +280,7 @@ only screen and (     -o-min-device-pixel-ratio: 2/1) {
   letter-spacing: -1px;
 }
 .marketing h2 {
-  color: #0290b3;
+  color: #333;
   text-shadow: #c0c0c0 0px 0px 5px;
   margin-bottom: 5px;
 }
@@ -1067,4 +1071,12 @@ form.bs-docs-example {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+}
+
+.sponsor-logo {
+    padding-bottom: 10px;
+}
+
+.row {
+    padding-top: 20px;
 }

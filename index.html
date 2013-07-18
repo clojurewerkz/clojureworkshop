@@ -25,20 +25,80 @@ layout: default
 
 <div class='container'>
   <div class="marketing">
-    <div class="row-fluid">
+    <div class="row">
       <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <h2>Core Concepts</h2>
+        <p>Staring with basics of Clojure, we'll be building a solid foundation for you as a Clojure developer. You'll learn everything required to get you up and running with Clojure.</p>
       </div>
 
       <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <h2>Interactive</h2>
+        <p>One of prerequisites is your own laptop. We support 3 text exitors: Emacs, Vim and Sublime, each one of those has nice interactive development tools. Pick one, get it configured, we'll cover the rest.</p>
       </div>
 
       <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+        <h2>Real-life examples</h2>
+        <p>We'll have people with production experience with Clojure speaking and coaching. They'll share their experiences with language. Get your questions prepared, they'll be able to answer all of them!</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span4 centered">
+        <h2>Sponsors</h2>
+        <a href="http://codecentric.de/"><img class="sponsor-logo" src="/assets/images/codecentric.png" /></a>
+        <a href="http://soundcloud.com/"><img class="sponsor-logo" src="/assets/images/soundcloud.png" /></a>
+      </div>
+      <div class="span8">
+        <h2>Speakers/Coaches</h2>
+        <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACsklEQVR4Xu2Y24upYRTGl0PI0JSimHDjMIVETVMzpvzrziLSTIkiLpTcjJLzcfaziuz2Njufsb8La93o+3jX+65nHX55NZ+fnzu6YdOIAFIB0gIyA254BpIMQaGAUEAoIBQQCtywAoJBwaBgUDAoGLxhCMifIcGgYFAwKBgUDAoGb1iBizHYbDap3+/Tbrcjp9NJwWCQNBrNQdJflKF6vU5ms5lisdhv353S/Ro+T+11kQCNRoN6vR7p9Xr2v16vyev1kt/v52eIkkql+L3BYKBEIkFarfbberuGz+82VCzAZrOhdDrNGX17e6PVakXdbpesVis9PDzwnq1Wi9/BTCYTvb6+0mQyoff3d9LpdBSPx2k8HhOCNhqNFIlEKJvNnu3zuOLO7WbFAiyXSz7sdrvloOfzObdAIBDgM8xmM8rlcuTxeGg0GtF0OmWhcNhKpULD4ZBsNhuvw3eoGqxX6vPcwPe/VywAertarbIftADKHIYgQqEQlctlzm4ymaRSqUSLxeIgwLF4WHN/f09PT090ic//LgAynM/nuXRfXl44i8VikXs9HA6zOHd3d+R2u6ndbnOl+Hw+foZ1Oh1+D3t+fuYqutSnEhEUVwAyjhmA3oYA+2cI8Pj4SLVa7Y/zYACiIjAcM5nMoWrsdjtFo9GDDyU+/zVcT4mjWAAEgQpA1lwuF3+irx0OB1cAyhyGg6EdIBAyjeA+Pj5oMBiQxWLhykF1YABirVKfSrKPNYoFwGIMsEKhQCACDO2AXkaQx4bWgACgAAYiBNnTA0KA+5gje5qc61MVChwHiGEHQ0Z/yq7h829nu6gCfipYNf2IAHIjJDdCciMkN0JqTmG19xYKCAWEAkIBoYDak1jN/YUCQgGhgFBAKKDmFFZ7b6GAUEAoIBQQCqg9idXcXyhw6xT4AgyAjZ+ww1kxAAAAAElFTkSuQmCC">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+      </div>
+
+
+      <div class="row">
+        <div class="span4"></div>
+        <div class="span8" id="topics">
+          <h2>Topics</h2>
+          <dl>
+            <dt>Clojure Toolchain</dt>
+            <dd>Set up everything that you need to start working with Clojure: text editor, JVM, <a href="http://leiningen.org/">Leiningen</a>, learn about Clojure infrastructure, Clojars, Maven repositories, use your favorite Java tools together with Clojure.</dd>
+
+            <dt>Clojure Basics</dt>
+            <dd>Start with a simple Clojure program, try things out in REPL, learn about Clojure syntax, language constructs and most important expressions.</dd>
+
+            <dt>Functional Programming</dt>
+            <dd>Higher-order functions, function composition, resursion, closures, lexical scope, currying, lazy evaluation. Thinking in verbs instead of nouns.</dd>
+
+            <dt>Java interop and Clojure data concepts</dt>
+            <dd>Types, Records, Protocols .</dd>
+
+            <dt>Building Blocks</dt>
+            <dd>Polymorphism in Clojure, using metadata, writing macros, common patterns.</dd>
+
+            <dt>Clojure and Parallelism</dt>
+            <dd>Writing multicore programs with Clojure, using Software Transactional Memory.</dd>
+
+            <dt>Clojure Libraries</dt>
+            <dd>Great things that exist in Clojure, libraries for building web application, working with databases, processing data, building distributed systems and more.</dd>
+
+            <dt>Real-world Clojure examples</dt>
+            <dd>Experiences of building large applications with Clojure, stories and advices from people who use Clojure in production.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span4"></div>
+        <div class="span8" id="schedule">
+          <h2>Schedule</h2>
+        </div>
       </div>
     </div>
   </div>
