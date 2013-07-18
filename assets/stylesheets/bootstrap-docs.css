@@ -85,32 +85,24 @@ hr.soften {
 /* Jumbotrons
 -------------------------------------------------- */
 
-/* Base class
-------------------------- */
 .jumbotron {
   position: relative;
   padding: 40px 0;
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  background: #020031;
-  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%);
-  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353));
-  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%);
-  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%);
-  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%);
-  background: linear-gradient(45deg, #020031 0%,#6d3353 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
-     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
-          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  background: url(/assets/images/bg.jpg) -250px -300px no-repeat, #000;
 }
+
 .jumbotron h1 {
   font-size: 80px;
   font-weight: bold;
   letter-spacing: -1px;
   line-height: 1;
 }
+
+/* Base class
+------------------------- */
+
 .jumbotron p {
   font-size: 24px;
   font-weight: 300;
@@ -119,6 +111,16 @@ hr.soften {
 }
 
 /* Link styles (used on .masthead-links as well) */
+.jumbotron h2 {
+    color: #eee;
+}
+.jumbotron p {
+    color: #eee;
+}
+
+.jumbotron p.small {
+    font-size: 20px;
+}
 .jumbotron a {
   color: #fff;
   color: rgba(255,255,255,.5);
@@ -191,9 +193,9 @@ only screen and (     -o-min-device-pixel-ratio: 2/1) {
 /* Masthead (docs home)
 ------------------------- */
 .masthead {
-  padding: 70px 0 80px;
+  padding: 30px 0 30px;
   margin-bottom: 0;
-  color: #fff;
+  color: #333;
 }
 .masthead h1 {
   font-size: 120px;
