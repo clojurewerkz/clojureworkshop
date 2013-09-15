@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en'>
+  <head>
+    <title>Getting Started</title>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport' />
+    <meta content='' name='description' />
+    <meta content='The ClojureWerkz Team' name='author' />
+    <link href='/assets/stylesheets/bootstrap.min.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/stylesheets/bootstrap-docs.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/stylesheets/bootstrap-responsive.min.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/stylesheets/pygments.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/assets/stylesheets/sass/styles.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Signika+Negative:300,400,600' rel='stylesheet' type='text/css' />
+    <script src='/assets/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/assets/javascripts/bootstrap.min.js'></script>
+    <script src='/assets/javascripts/toc.js'></script>
+    <meta content='text/html;charset=utf-8' http-equiv='Content-Type' />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42831543-1', 'clojureworkshop.com');
+      ga('send', 'pageview');
+
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#side-navigation">
+    <div class='navbar navbar-inverse navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </a>
+          <a class='brand' href='/'>Project Name</a>
+          <div class='nav-collapse'>
+            <ul class='nav'>
+              <li class=''>
+                <a href='/'>Home</a>
+              </li>
+              <li>
+                <a href="/articles/guides.html">All guides</a>
+              </li>
+              <li>
+                <a href='/articles/community.html'>Community</a>
+              </li>
+              <li>
+                <a href='https://github.com/clojurewerkz'>Code on Github</a>
+              </li>
+              <li>
+                <a href='http://clojurewerkz.org'>More Clojure libraries</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='row'>
+        <div class='span3 bs-docs-sidebar' id='side-navigation'>
+          <ul id="toc" class="nav nav-list bs-docs-sidenav"></ul>
+        </div>
+        <div class='span9'>
+          <h2 id="toc_0">Getting started with Clojure</h2>
+
+<p>No matter which technology you&#39;re coming from, or what you&#39;re going to
+use in future, Clojure will teach you something new, interesting and
+useful that will help you to develop better applications in future.</p>
+
+<p>This chapter will cover basic principles of Clojure and help you with</p>
+
+<h3 id="toc_1">Why Clojure?</h3>
+
+<ul>
+<li>Extremely expressive language</li>
+<li>First-class functions</li>
+<li>Awesome Java Interop abilities</li>
+<li>Power of lisp (macros, function composition)</li>
+<li>FUNctional</li>
+</ul>
+
+<h3 id="toc_2">Functional programming</h3>
+
+<p>When I first heard of Functional Programming it sounded very
+complex. Although it&#39;s not. It&#39;s as simple as being able to have a
+function, and not being able to re-assign the variable. Now it sounds
+simplistic, but this simplicity has an amazing power, which you&#39;ll
+discover during next two days of workshop.</p>
+
+<h4 id="toc_3">Everything is an expression</h4>
+
+<p>The simplest example of how Functional Programming style is different
+from imperative is conditional statement. In languages like Java you
+if you want to have a variable to get one of two values, you&#39;d write
+code somewhat similar to:</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="n">String</span> <span class="n">parity</span> <span class="o">=</span> <span class="n">nil</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">parity</span> <span class="o">=</span> <span class="s">&quot;even&quot;</span><span class="o">;</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+  <span class="n">parity</span> <span class="o">=</span> <span class="s">&quot;odd&quot;</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>In Clojure, everything is an expression. If you type <code>(+ 1 1)</code>, it&#39;s an
+expression that adds two numbers, and if you write:</p>
+<div class="highlight"><pre><code class="clojure language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">parity</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">even?</span> <span class="nv">number</span><span class="p">)</span> <span class="ss">:even</span> <span class="ss">:odd</span><span class="p">))</span>
+</code></pre></div>
+<p>It evaluates <code>if</code> form checking which statement shuld be returned,
+<code>:even</code> or <code>:odd</code>. Everything that you see between two brackets is an
+expression that returns some value, therefore most of times you can
+avoid additional variables, since you can use conditionals, <code>let</code> form,
+function calls, every language feature as an expression.</p>
+
+<p>Other examples of expressions would be:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="nv">Here</span> <span class="nv">are</span> <span class="nb">some </span><span class="nv">examples</span>
+<span class="nv">of</span> <span class="nv">expressions</span><span class="err">:</span>
+
+<span class="o">```</span><span class="nv">clj</span>
+<span class="mi">5</span>                      <span class="c1">; ⇒ 5</span>
+<span class="s">&quot;hi&quot;</span>                   <span class="c1">; ⇒ &quot;hi&quot;</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>                <span class="c1">; evaluates to the vector `[1 2 3]`</span>
+<span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>                <span class="c1">; evaluates to the sum of 1 and 2</span>
+<span class="p">(</span><span class="k">if </span><span class="nv">true</span> <span class="s">&quot;yes&quot;</span> <span class="s">&quot;no&quot;</span><span class="p">)</span>   <span class="c1">; evaluates to the string &quot;yes&quot;</span>
+<span class="p">(</span><span class="nb">println </span><span class="s">&quot;hello!&quot;</span><span class="p">)</span>     <span class="c1">; evaluates to nil (but also prints &quot;hello!&quot;)</span>
+</code></pre></div>
+<h3 id="toc_4">Iteration</h3>
+
+<p>If you want to take an array of numbers <code>[1,2,3]</code> and increment it,
+you&#39;d have to either create a new array holding incremented values or
+increment values in-place.</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kt">int</span> <span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">};</span>
+
+<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+  <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>This has many downsides. One of them is that if you&#39;re currently located
+inside the function and only hold a reference to the array, you&#39;re not
+guaranteed that array doesn&#39;t change during the iteration. Moreover, if
+you&#39;re incrementing in-place, you may be breaking code that relies on
+the fact that array is unchanged.</p>
+
+<p>In Clojure, you don&#39;t have this problem, because you can&#39;t re-assign the
+value, and you can&#39;t change the values inside of the array. So you can
+only map through all the values within the array, increment each one of
+them and return a new array:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nb">map inc </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre></div>
+<p>Some languages have implementation of <code>map</code> for Enumerables, but in many
+of them internally it&#39;s implemented exactly as we&#39;ve seen above: new
+array is created empty, filled with new values and then returned. In
+functional programming languages it&#39;s usually created through recursive
+function that&#39;s taking the head (first element of the array), applying
+function to it, then it recurses to itself with newly calculated array
+and to-be-calculated one.</p>
+
+<h3 id="toc_5">Enter Clojure</h3>
+
+<p>We&#39;ll start with evaluating simple things in Repl and move to more
+complex things, creating your first namespace and writing a set of
+functions later. Now, we&#39;re going to cover the foundation.</p>
+
+<h4 id="toc_6">Variables</h4>
+
+<p>Even though Variables are called that way, you don&#39;t really change
+them. E.g. usually you don&#39;t solve problem in Clojure by re-assigning a
+variable. In principle, you can rebind the variable, or shadow it in a
+lexical scope, but these all are just flexibility matters.</p>
+
+<p>In order to define a new variable, you use <code>def</code> form:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="k">def </span><span class="nv">a</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p>Since there on, you can reference it by name <code>a</code> within current
+namespace. Let&#39;s try it out in REPL.</p>
+
+<h4 id="toc_7">Expressions</h4>
+
+<p>As we&#39;ve mentioned before, everything gets evaluated as an expression.</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="k">def </span><span class="nv">a</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="mi">2</span><span class="p">)))</span>
+</code></pre></div>
+<p>Here, you can see 3 expressions: <code>(* 2 2)</code>, <code>(+ 1 (* 2 2)</code>, and def
+itself. If you evaluate any expression in REPL, you&#39;ll get it&#39;s final
+result. Try it out now.</p>
+
+<h4 id="toc_8">Data Structures</h4>
+
+<p>Clojure comes out of the box with nice literal syntax for the various
+core data structures:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>            <span class="c1">; A vector (can access items by index).</span>
+<span class="p">[</span><span class="mi">1</span> <span class="ss">:two</span> <span class="s">&quot;three&quot;</span><span class="p">]</span>   <span class="c1">; Put anything into them you like.</span>
+<span class="p">{</span><span class="ss">:a</span> <span class="mi">1</span> <span class="ss">:b</span> <span class="mi">2</span><span class="p">}</span>        <span class="c1">; A hashmap (or just &quot;map&quot;, for short).</span>
+</code></pre></div>
+<p>A hashmap is your typical hash/dictionary data structure. In the above
+example, the keys are :a and :b, and the values are 1 and 2. One
+key-value pair in a map is called an entry.</p>
+
+<p>Although it&#39;s most common to use keywords (as shown above) for hashmap
+keys, you can use any values you like for the keys as well as the
+values.</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="o">#</span><span class="p">{</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span><span class="p">}</span>        <span class="c1">; A set (unordered, and contains no duplicates).</span>
+<span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>           <span class="c1">; A list (linked-list)</span>
+</code></pre></div>
+<p>Note: In Clojure, we use the term &quot;vector&quot; rather than &quot;array&quot;. &quot;Array&quot;
+would refer to the native Java array, whereas &quot;vector&quot; refers to the
+Clojure data structure.</p>
+
+<p>Try creating a list, vector, map and set in your REPL now.</p>
+
+<h4 id="toc_9">Functions</h4>
+
+<p>In order to define a function, you use <code>defn</code> form. For example, lets
+create a function that adds two values:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="kd">defn </span><span class="nv">sum-of-two-numbers</span>
+  <span class="p">[</span><span class="nb">first </span><span class="nv">second</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">+ first </span><span class="nv">second</span><span class="p">)</span>
+</code></pre></div>
+<p>Since now on yu can use <code>sum-of-two-numbers</code> name to call the function:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nf">sum-of-two-numbers</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1">;; =&gt; 5</span>
+</code></pre></div>
+<h4 id="toc_10">Anonymous functions</h4>
+
+<p>In order to create an anonymous function, you can use <code>fn</code> form or <code>#()</code>
+shortcut:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nb">first </span><span class="nv">second</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ first </span><span class="nv">second</span><span class="p">))</span>
+</code></pre></div>
+<p>You can call an anonymous function right away:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nb">first </span><span class="nv">second</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ first </span><span class="nv">second</span><span class="p">))</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1">;; =&gt; 5</span>
+</code></pre></div>
+<p>Or you can pass it to another function:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="kd">defn </span><span class="nv">do-something-with-two-numbers</span>
+  <span class="p">[</span><span class="nv">what-to-do</span> <span class="nb">first </span><span class="nv">second</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">what-to-do</span> <span class="nb">first </span><span class="nv">second</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nf">do-something-with-two-numbers</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nb">first </span><span class="nv">second</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ first </span><span class="nv">second</span><span class="p">))</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<p>Of course all these examples are extremely primitive and simply reuse
+and re-implement what&#39;s already there, but it should give you a rough
+idea of how it all functions.</p>
+
+<p>Try it out in repl.</p>
+
+<p>Excercise: Write a named function that receives an anonymous function
+and calls it with two passed arguments.</p>
+
+<h4 id="toc_11">Let and locals</h4>
+
+<p>When you want some lexically-scoped named values to use in a section of
+your code, you can use the <code>let</code> form:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">width</span>     <span class="mi">10</span>
+      <span class="nv">height</span>    <span class="mi">20</span>
+      <span class="nv">thickness</span> <span class="mi">2</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">println </span><span class="s">&quot;hello from inside the `let`.&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">* </span><span class="nv">width</span>
+     <span class="nv">height</span>
+     <span class="nv">thickness</span><span class="p">))</span>
+</code></pre></div>
+<h4 id="toc_12">Control Structures</h4>
+
+<p>Control structures help you to take different execution paths. For
+example, if you have <code>if</code> form, you&#39;d like to evaluate one form if
+condition is truty and different one if it&#39;s faulty, which changes
+the evaluation order.</p>
+
+<p>Let&#39;s imagine for a second that <code>when</code> (prety much same as if, just
+without false statement was a function:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nb">when </span><span class="nv">condition</span>
+  <span class="p">(</span><span class="nf">truthy-expression-1</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">truthy-expression-2</span><span class="p">))</span>
+</code></pre></div>
+<p>Clojure would execute first <code>condition</code> and then <code>truthy-expression-1</code>
+(and 2). But <code>truthy-expressions</code> will be evaluated even if <code>condition</code>
+is false.</p>
+
+<p>That&#39;s pretty much where we learn why macros exist and how to apply
+them. Majority of control structures are implemented as macros
+in Clojure. Macros are taking Clojure code and modifying it, as if it
+was a list (which it actually is ;). What <code>when</code> does under the hood, is
+it expands to <code>if</code> without false clause:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="k">if </span><span class="nv">condition</span>
+  <span class="p">(</span><span class="nf">do</span>
+    <span class="p">(</span><span class="nf">truthy-expression-1</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">truthy-expression-2</span><span class="p">)))</span>
+</code></pre></div>
+<p>Main control structures, or at least ones that we&#39;re going to use
+throughout the workshop are <code>if</code>, <code>when</code>, <code>if-not</code>, <code>when-not</code> and
+<code>if-let</code>.</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="k">def </span><span class="nv">number</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">odd?</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">pirntln</span> <span class="s">&quot;odd&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">pirntln</span> <span class="s">&quot;even&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">if-not </span><span class="p">(</span><span class="nf">odd?</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">pirntln</span> <span class="s">&quot;even&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">pirntln</span> <span class="s">&quot;odd&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">when </span><span class="p">(</span><span class="nf">even?</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">println </span><span class="s">&quot;even&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">when-not </span><span class="p">(</span><span class="nf">even?</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">println </span><span class="s">&quot;odd&quot;</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">if-let </span><span class="p">[</span><span class="nv">is-even?</span> <span class="p">(</span><span class="nf">even?</span> <span class="nv">number</span><span class="p">)]</span>
+  <span class="p">(</span><span class="nb">println </span><span class="s">&quot;even? &quot;</span> <span class="nv">returned</span> <span class="s">&quot; &quot;</span> <span class="nv">is-even?</span> <span class="s">&quot; for &quot;</span> <span class="nv">number</span><span class="p">))</span>
+</code></pre></div>
+<h4 id="toc_13">Collection fns</h4>
+
+<p>Whatever you do, majority of tasks are related to Enumerables. They&#39;re
+your &quot;bread and butter&quot;, bare neccessities.</p>
+
+<p>With <code>map</code> you can apply a function to every value in a collection. The
+result is a new collection. You can often use map instead of manually
+looping over a collection. Some examples using map:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nb">map inc </span><span class="p">[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">])</span>     <span class="c1">; ⇒ (11 21 31)</span>
+<span class="p">(</span><span class="nb">map str </span><span class="p">[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">])</span>     <span class="c1">; ⇒ (&quot;10&quot; &quot;20&quot; &quot;30&quot;)</span>
+<span class="c1">;; You can define the function to be used on-the-fly:</span>
+<span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;=&quot;</span> <span class="nv">x</span> <span class="s">&quot;=&quot;</span><span class="p">))</span> <span class="p">[</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">])</span>
+<span class="c1">;; ⇒ (&quot;=10=&quot; &quot;=20=&quot; &quot;=30=&quot;)</span>
+
+<span class="c1">;; And `map` knows how to apply the function you give it</span>
+<span class="c1">;; to mulitple collections in a coordinated way:</span>
+<span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="nv">x</span> <span class="nv">y</span><span class="p">))</span> <span class="p">[</span><span class="ss">:a</span> <span class="ss">:b</span> <span class="ss">:c</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">])</span>
+<span class="c1">;; ⇒ (&quot;:a1&quot; &quot;:b2&quot; &quot;:c3&quot;)</span>
+</code></pre></div>
+<p>Use <code>filter</code> with a predicate function to pare down a collection to just
+the values for which <code>(the-pred the-value)</code> returns true:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nb">filter </span><span class="nv">odd?</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">))</span>
+<span class="c1">;; ⇒ (1 3 5 7 9)</span>
+</code></pre></div>
+<p>Use <code>remove</code> for the opposite effect (which amounts to removing the items
+for which <code>(pred val)</code> returns true):</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nb">remove </span><span class="nv">odd?</span> <span class="p">(</span><span class="nb">range </span><span class="mi">10</span><span class="p">))</span>
+<span class="c1">;; ⇒ (0 2 4 6 8)</span>
+</code></pre></div>
+<p><code>reduce</code> is a gem. You use it to apply a function to the first and
+second items in a coll and get a result. Then you apply it to the result
+you just got and the 3rd item in the coll. Then the result of that and
+the 4th. And so on. The process looks something like this:</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="nb">reduce + </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">])</span>
+<span class="c1">;; → 1 + 2   [3 4 5]</span>
+<span class="c1">;; → 3       [3 4 5]</span>
+<span class="c1">;; → 3 + 3   [4 5]</span>
+<span class="c1">;; → 6       [4 5]</span>
+<span class="c1">;; → 6 + 4   [5]</span>
+<span class="c1">;; → 10      [5]</span>
+<span class="c1">;; → 10 + 5</span>
+<span class="c1">;; ⇒  15</span>
+</code></pre></div>
+<p>You may think of <code>reduce</code> as of <code>for</code> loop with accumulator,
+actually. I would even go as far as saying that it&#39;s a functional way of
+doing so.</p>
+
+<h3 id="toc_14">Exercise: simple function</h3>
+
+<p>Write a function that doubles an integer.</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="kd">defn </span><span class="nv">double-it</span>
+  <span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="toc_15">Exercise: factorial (I bet you knew)</h3>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="kd">defn </span><span class="nv">factorial</span>
+  <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="mi">1</span>
+    <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">factorial</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span>
+</code></pre></div>
+<h3 id="toc_16">Exercise: Implement your own <code>map</code></h3>
+
+<p>Now, as we&#39;ve got the basics, we can go ahead and get our hands dirty
+with recursion. Since majority of collection operations are related to
+recursion in some way, we have to learn how to use recursion rather than
+forcing ourselves to have a mutable state.</p>
+
+<p><code>map</code> receives two arguments:</p>
+
+<ul>
+<li><code>f</code>, - function that should be applied to each element of old
+collection to get new colllection</li>
+<li><code>coll</code> - original collection</li>
+</ul>
+
+<p>Basic algoritm for <code>map</code> is as follows:</p>
+
+<ul>
+<li>if the incoming collection is empty, return an empty collection</li>
+<li>if collection is not empty,
+
+<ul>
+<li>Apply <code>f</code> to first element of the collection [1]</li>
+<li>Prepend result of [1] to result of execution of <code>map</code> with tail of
+collection.</li>
+</ul></li>
+</ul>
+
+<p>Functions you will require:</p>
+
+<ul>
+<li><code>first</code> - get first item in the collection.</li>
+<li><code>empty?</code> - returns true if collection has no items.</li>
+<li><code>next</code> - returns a items after the first one in given collection</li>
+<li><code>&#39;()</code> or <code>(list)</code> - creates an empty list</li>
+</ul>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="kd">defn </span><span class="nv">my-map</span>
+  <span class="p">[</span><span class="nv">f</span> <span class="nv">coll</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">coll</span><span class="p">)</span>
+    <span class="o">&#39;</span><span class="p">()</span>
+    <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">first </span><span class="nv">coll</span><span class="p">))</span> <span class="p">(</span><span class="nf">my-map</span> <span class="nv">f</span> <span class="p">(</span><span class="nb">next </span><span class="nv">coll</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">my-map</span> <span class="nb">inc </span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">my-map</span> <span class="nb">inc </span><span class="p">[]))</span>
+</code></pre></div>
+<h3 id="toc_17">Exercise: Implement your own <code>reduce</code></h3>
+
+<p>Reduce is quite similar to <code>map</code>. It receives 3 arguments: aggregation
+function, initial value and collection. Aggregation function should be a
+function of two arguments, accumulator and current item.</p>
+
+<p>Try to figure it out yourself ;)</p>
+<div class="highlight"><pre><code class="clj language-clj" data-lang="clj"><span class="p">(</span><span class="kd">defn </span><span class="nv">my-reduce</span>
+  <span class="p">[</span><span class="nv">f</span> <span class="nv">default</span> <span class="nv">coll</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">coll</span><span class="p">)</span>
+    <span class="nv">default</span>
+    <span class="p">(</span><span class="nb">reduce </span><span class="nv">f</span> <span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">first </span><span class="nv">coll</span><span class="p">)</span> <span class="nv">default</span><span class="p">)</span> <span class="p">(</span><span class="nb">next </span><span class="nv">coll</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">my-reduce</span> <span class="nb">+ </span><span class="mi">5</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nf">my-reduce</span> <span class="nb">+ </span><span class="mi">1</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">]))</span>
+</code></pre></div>
+
+          <h2>Tell Us What You Think!</h2>
+
+          <p>Please take a moment to tell us what you think about this guide on Twitter or the <a href="TBD">Project Name mailing list</a></p>
+
+          <p>Let us know what was unclear or what has not been covered. Maybe you do not like the guide style or grammar or discover spelling mistakes. Reader feedback is key to making the documentation better.</p>
+
+        </div>
+      </div>
+    </div>
+    <footer class='footer article'>
+      <p>This website was developed by the
+        &nbsp;<a href='http://github.com/clojurewerkz'>ClojureWerkz team</a>.</p>
+      <p>Follow us on Twitter:
+        &nbsp;<a href='http://twitter.com/clojurewerkz'>ClojureWerkz</a>,&nbsp;<a href='http://twitter.com/michaelklishin'>Michael Klishin</a>,&nbsp;<a href='http://twitter.com/ifesdjeen'>Alex P</a></p>
+    </footer>
+  </body>
+</html>

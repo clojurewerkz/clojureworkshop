@@ -242,9 +242,163 @@ your code, you can use the `let` form:
 
 #### Control Structures
 
+Control structures help you to take different execution paths. For
+example, if you have `if` form, you'd like to evaluate one form if
+condition is truty and different one if it's faulty, which changes
+the evaluation order.
+
+Let's imagine for a second that `when` (prety much same as if, just
+without false statement was a function:
+
+```clj
+(when condition
+  (truthy-expression-1)
+  (truthy-expression-2))
+```
+
+Clojure would execute first `condition` and then `truthy-expression-1`
+(and 2). But `truthy-expressions` will be evaluated even if `condition`
+is false.
+
+That's pretty much where we learn why macros exist and how to apply
+them. Majority of control structures are implemented as macros
+in Clojure. Macros are taking Clojure code and modifying it, as if it
+was a list (which it actually is ;). What `when` does under the hood, is
+it expands to `if` without false clause:
+
+```clj
+(if condition
+  (do
+    (truthy-expression-1)
+    (truthy-expression-2)))
+```
+
+Main control structures, or at least ones that we're going to use
+throughout the workshop are `if`, `when`, `if-not`, `when-not` and
+`if-let`.
+
+```clj
+(def number 5)
+
+(if (odd? number)
+  (pirntln "odd")
+  (pirntln "even"))
+
+(if-not (odd? number)
+  (pirntln "even")
+  (pirntln "odd"))
+
+(when (even? number)
+  (println "even"))
+
+(when-not (even? number)
+  (println "odd"))
+
+(if-let [is-even? (even? number)]
+  (println "even? " returned " " is-even? " for " number))
+```
+
+#### Collection fns
+
+Whatever you do, majority of tasks are related to Enumerables. They're
+your "bread and butter", bare neccessities.
+
+With `map` you can apply a function to every value in a collection. The
+result is a new collection. You can often use map instead of manually
+looping over a collection. Some examples using map:
+
+```clj
+(map inc [10 20 30])     ; ⇒ (11 21 31)
+(map str [10 20 30])     ; ⇒ ("10" "20" "30")
+;; You can define the function to be used on-the-fly:
+(map (fn [x] (str "=" x "=")) [10 20 30])
+;; ⇒ ("=10=" "=20=" "=30=")
+
+;; And `map` knows how to apply the function you give it
+;; to mulitple collections in a coordinated way:
+(map (fn [x y] (str x y)) [:a :b :c] [1 2 3])
+;; ⇒ (":a1" ":b2" ":c3")
+```
+
+Use `filter` with a predicate function to pare down a collection to just
+the values for which `(the-pred the-value)` returns true:
+
+```clj
+(filter odd? (range 10))
+;; ⇒ (1 3 5 7 9)
+```
+
+Use `remove` for the opposite effect (which amounts to removing the items
+for which `(pred val)` returns true):
+
+```clj
+(remove odd? (range 10))
+;; ⇒ (0 2 4 6 8)
+```
+
+`reduce` is a gem. You use it to apply a function to the first and
+second items in a coll and get a result. Then you apply it to the result
+you just got and the 3rd item in the coll. Then the result of that and
+the 4th. And so on. The process looks something like this:
+
+```clj
+(reduce + [1 2 3 4 5])
+;; → 1 + 2   [3 4 5]
+;; → 3       [3 4 5]
+;; → 3 + 3   [4 5]
+;; → 6       [4 5]
+;; → 6 + 4   [5]
+;; → 10      [5]
+;; → 10 + 5
+;; ⇒  15
+```
+
+You may think of `reduce` as of `for` loop with accumulator,
+actually. I would even go as far as saying that it's a functional way of
+doing so.
+
+### Exercise: simple function
+
+Write a function that doubles an integer.
+
+### Exercise: factorial (I bet you knew)
+
+Implement a function that receives a number and calculates a factorial of it.
+
+### Excercise:
 
 ### Exercise: Implement your own `map`
 
-Map is a perfect example of how to iterate through the sequence
+Now, as we've got the basics, we can go ahead and get our hands dirty
+with recursion. Since majority of collection operations are related to
+recursion in some way, we have to learn how to use recursion rather than
+forcing ourselves to have a mutable state.
+
+`map` receives two arguments:
+
+  * `f`, - function that should be applied to each element of old
+    collection to get new colllection
+  * `coll` - original collection
+
+Basic algoritm for `map` is as follows:
+
+  * if the incoming collection is empty, return an empty collection
+  * if collection is not empty,
+    * Apply `f` to first element of the collection [1]
+    * Prepend result of [1] to result of execution of `map` with tail of
+      collection.
+
+Functions you will require:
+
+  * `first` - get first item in the collection.
+  * `empty?` - returns true if collection has no items.
+  * `next` - returns a items after the first one in given collection
+  * `'()` or `(list)` - creates an empty list
 
 ### Exercise: Implement your own `reduce`
+
+Reduce is quite similar to `map`. It receives 3 arguments: aggregation
+function, initial value and collection. Aggregation function should be a
+function of two arguments, accumulator and current item.
+
+Try to figure it out yourself ;)
