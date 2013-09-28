@@ -175,8 +175,8 @@ create a function that adds two values:
 
 ```clj
 (defn sum-of-two-numbers
-  [first second]
-  (+ first second)
+  [a b]
+  (+ a b)
 ```
 
 Since now on yu can use `sum-of-two-numbers` name to call the function:
