@@ -35,7 +35,7 @@ if you want to have a variable to get one of two values, you'd write
 code somewhat similar to:
 
 ```java
-String parity = nil;
+String parity = null;
 if (number % 2 == 0) {
   parity = "even";
 } else {
