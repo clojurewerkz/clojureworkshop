@@ -196,13 +196,13 @@ In order to create an anonymous function, you can use `fn` form or `#()`
 shortcut:
 
 ```clj
-(fn [first second] (+ first second))
+(fn [a b] (+ a b))
 ```
 
 You can call an anonymous function right away:
 
 ```clj
-((fn [first second] (+ first second)) 2 3)
+((fn [a b] (+ a b)) 2 3)
 ;; => 5
 ```
 
@@ -210,10 +210,10 @@ Or you can pass it to another function:
 
 ```clj
 (defn do-something-with-two-numbers
-  [what-to-do first second]
-  (what-to-do first second))
+  [what-to-do a b]
+  (what-to-do a b))
 
-(do-something-with-two-numbers (fn [first second] (+ first second)) 2 3)
+(do-something-with-two-numbers (fn [a b] (+ a b) 2 3)
 ```
 
 Of course all these examples are extremely primitive and simply reuse
