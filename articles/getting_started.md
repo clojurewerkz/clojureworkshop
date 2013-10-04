@@ -11,7 +11,7 @@ useful that will help you to develop better applications in future.
 
 This chapter will cover basic principles of Clojure and help you with
 
-### Why Clojure?
+## Why Clojure?
 
   * Extremely expressive language
   * First-class functions
@@ -19,7 +19,7 @@ This chapter will cover basic principles of Clojure and help you with
   * Power of lisp (macros, function composition)
   * FUNctional
 
-### Functional programming
+## Functional programming
 
 When I first heard of Functional Programming it sounded very
 complex. Although it's not. It's as simple as being able to have a
@@ -27,7 +27,7 @@ function, and not being able to re-assign the variable. Now it sounds
 simplistic, but this simplicity has an amazing power, which you'll
 discover during next two days of workshop.
 
-#### Everything is an expression
+### Everything is an expression
 
 The simplest example of how Functional Programming style is different
 from imperative is conditional statement. In languages like Java you
@@ -71,7 +71,7 @@ of expressions:
 (println "hello!")     ; evaluates to nil (but also prints "hello!")
 ```
 
-### Iteration
+## Iteration
 
 If you want to take an array of numbers `[1,2,3]` and increment it,
 you'd have to either create a new array holding incremented values or
@@ -108,13 +108,13 @@ function that's taking the head (first element of the array), applying
 function to it, then it recurses to itself with newly calculated array
 and to-be-calculated one.
 
-### Enter Clojure
+## Enter Clojure
 
 We'll start with evaluating simple things in Repl and move to more
 complex things, creating your first namespace and writing a set of
 functions later. Now, we're going to cover the foundation.
 
-#### Variables
+### Variables
 
 Even though Variables are called that way, you don't really change
 them. E.g. usually you don't solve problem in Clojure by re-assigning a
@@ -130,7 +130,7 @@ In order to define a new variable, you use `def` form:
 Since there on, you can reference it by name `a` within current
 namespace. Let's try it out in REPL.
 
-#### Expressions
+### Expressions
 
 As we've mentioned before, everything gets evaluated as an expression.
 
@@ -142,7 +142,7 @@ Here, you can see 3 expressions: `(* 2 2)`, `(+ 1 (* 2 2)`, and def
 itself. If you evaluate any expression in REPL, you'll get it's final
 result. Try it out now.
 
-#### Data Structures
+### Data Structures
 
 Clojure comes out of the box with nice literal syntax for the various
 core data structures:
@@ -172,7 +172,7 @@ Clojure data structure.
 
 Try creating a list, vector, map and set in your REPL now.
 
-#### Functions
+### Functions
 
 In order to define a function, you use `defn` form. For example, lets
 create a function that adds two values:
@@ -190,7 +190,7 @@ Since now on yu can use `sum-of-two-numbers` name to call the function:
 ;; => 5
 ```
 
-#### Anonymous functions
+### Anonymous functions
 
 In order to create an anonymous function, you can use `fn` form or `#()`
 shortcut:
@@ -225,7 +225,7 @@ Try it out in repl.
 Excercise: Write a named function that receives an anonymous function
 and calls it with two passed arguments.
 
-#### Let and locals
+### Let and locals
 
 When you want some lexically-scoped named values to use in a section of
 your code, you can use the `let` form:
@@ -240,7 +240,7 @@ your code, you can use the `let` form:
      thickness))
 ```
 
-#### Control Structures
+### Control Structures
 
 Control structures help you to take different execution paths. For
 example, if you have `if` form, you'd like to evaluate one form if
@@ -298,7 +298,7 @@ throughout the workshop are `if`, `when`, `if-not`, `when-not` and
   (println "even? " returned " " is-even? " for " number))
 ```
 
-#### Collection fns
+### Collection fns
 
 Whatever you do, majority of tasks are related to Enumerables. They're
 your "bread and butter", bare neccessities.
@@ -357,17 +357,9 @@ You may think of `reduce` as of `for` loop with accumulator,
 actually. I would even go as far as saying that it's a functional way of
 doing so.
 
-### Exercise: simple function
+## Excercises
 
-Write a function that doubles an integer.
-
-### Exercise: factorial (I bet you knew)
-
-Implement a function that receives a number and calculates a factorial of it.
-
-### Excercise:
-
-### Exercise: Implement your own `map`
+### Implement your own `map`
 
 Now, as we've got the basics, we can go ahead and get our hands dirty
 with recursion. Since majority of collection operations are related to
@@ -395,7 +387,7 @@ Functions you will require:
   * `next` - returns a items after the first one in given collection
   * `'()` or `(list)` - creates an empty list
 
-### Exercise: Implement your own `reduce`
+### Implement your own `reduce`
 
 Reduce is quite similar to `map`. It receives 3 arguments: aggregation
 function, initial value and collection. Aggregation function should be a
