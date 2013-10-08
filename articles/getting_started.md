@@ -59,10 +59,6 @@ function calls, every language feature as an expression.
 Other examples of expressions would be:
 
 ```clj
-Here are some examples
-of expressions:
-
-```clj
 5                      ; ⇒ 5
 "hi"                   ; ⇒ "hi"
 [1 2 3]                ; evaluates to the vector `[1 2 3]`
@@ -179,8 +175,8 @@ create a function that adds two values:
 
 ```clj
 (defn sum-of-two-numbers
-  [first second]
-  (+ first second)
+  [a b]
+  (+ a b)
 ```
 
 Since now on yu can use `sum-of-two-numbers` name to call the function:
