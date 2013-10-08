@@ -357,48 +357,130 @@ You may think of `reduce` as of `for` loop with accumulator,
 actually. I would even go as far as saying that it's a functional way of
 doing so.
 
-### Exercise: simple function
+## Namespaces
 
-Write a function that doubles an integer.
+We've got some bare neccessities covered, now let's talk just a bit about what
+namespaces are and what they're for.
 
-### Exercise: factorial (I bet you knew)
+Clojure functions are organized into namespaces. Clojure namespaces are very
+similar to Java packages and Python modules. Namespaces are basically maps
+(dictionaries) that map names to vars. In many cases, those vars store
+functions in them.
 
-Implement a function that receives a number and calculates a factorial of it.
+### Defining a Namespace
 
-### Excercise:
+Namespaces are usually defined using the `clojure.core/ns` macro. In its basic
+form, it takes a name as a symbol:
 
-### Exercise: Implement your own `map`
+```clj
+(ns superlib.core)
+```
 
-Now, as we've got the basics, we can go ahead and get our hands dirty
-with recursion. Since majority of collection operations are related to
-recursion in some way, we have to learn how to use recursion rather than
-forcing ourselves to have a mutable state.
+Namespaces can have multiple segments, separated by a dot:
 
-`map` receives two arguments:
+```clj
+(ns megacorp.service.core)
+```
 
-  * `f`, - function that should be applied to each element of old
-    collection to get new colllection
-  * `coll` - original collection
+In addition, the ns macro takes a number of optional forms:
 
-Basic algoritm for `map` is as follows:
+  * `(:require ...)`
+  * `(:import ...)`
+  * `(:use ...)`
+  * `(:refer-clojure ...)`
+  * `(:gen-class ...)`
 
-  * if the incoming collection is empty, return an empty collection
-  * if collection is not empty,
-    * Apply `f` to first element of the collection [1]
-    * Prepend result of [1] to result of execution of `map` with tail of
-      collection.
+These are just slightly more concise variants of `clojure.core/import`,
+`clojure.core/require`, et cetera.
 
-Functions you will require:
+### The :require Helper Form
 
-  * `first` - get first item in the collection.
-  * `empty?` - returns true if collection has no items.
-  * `next` - returns a items after the first one in given collection
-  * `'()` or `(list)` - creates an empty list
+The `:require` helper form is for setting up access to other Clojure namespaces
+from your code. For example:
 
-### Exercise: Implement your own `reduce`
+```clj
+(ns megacorp.profitd.scheduling
+  (:require clojure.set))
 
-Reduce is quite similar to `map`. It receives 3 arguments: aggregation
-function, initial value and collection. Aggregation function should be a
-function of two arguments, accumulator and current item.
+;; Now it is possible to do:
+;; (clojure.set/difference #{1 2 3} #{3 4 5})
+```
 
-Try to figure it out yourself ;)
+This will make sure the `clojure.set` namespace is loaded, compiled, and
+available as `clojure.set` (using its fully qualified name). It is possible
+(and common) to make a namespace available under an alias:
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:require [clojure.set :as cs]))
+
+;; Now it is possible to do:
+;; (cs/difference #{1 2 3} #{3 4 5})
+```
+
+One more example with two required namespaces:
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:require [clojure.set  :as cs]
+            [clojure.walk :as walk]))
+```
+
+### The :refer Option
+
+To make functions in `clojure.set` available in the defined namespace via short
+names (i.e., their unqualified names, without the clojure.set or other prefix),
+you can tell Clojure compiler to refer to certain functions:
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:require [clojure.set :refer [difference intersection]]))
+
+;; Now it is possible to do:
+;; (difference #{1 2 3} #{3 4 5})
+```
+
+The `:refer` feature of the `:require` form is new in Clojure 1.4.
+
+It is possible to refer to all functions in a namespace (usually not necessary):
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:require [clojure.set :refer :all]))
+
+;; Now it is possible to do:
+;; (difference #{1 2 3} #{3 4 5})
+```
+
+### The :import Helper Form
+The `:import` helper form is for setting up access to Java classes from your Clojure
+code. For example:
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:import java.util.concurrent.Executors))
+```
+
+This will make sure the `java.util.concurrent.Executors` class is imported and can
+be used by its short name, Executors. It is possible to import multiple classes:
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:import java.util.concurrent.Executors
+           java.util.concurrent.TimeUnit
+           java.util.Date))
+```
+
+If multiple imported classes are in the same namespace (like in the example above),
+it is possible to avoid some duplication by using an import list. The first element
+of an import list is the package and other elements are class names in that
+package:
+
+```clj
+(ns megacorp.profitd.scheduling
+  (:import [java.util.concurrent Executors TimeUnit]
+           java.util.Date))
+```
+
+Even though import list is called a list, it can be any Clojure collection (typically
+vectors are used).
