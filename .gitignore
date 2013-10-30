@@ -20,4 +20,7 @@ todo*
 \#*
 deploy.docs.sh
 _site
-_site/**
+_site/*
+.bundle/*
+bin/*
+deploy.sh

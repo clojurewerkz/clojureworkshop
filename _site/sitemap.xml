@@ -2,22 +2,42 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://PROJECT.clojurewerkz.org/articles/articles/clojure_basics.html</loc>
-        <lastmod>2013-09-10T15:38:03+02:00</lastmod>
+        <lastmod>2013-10-30T10:44:16+01:00</lastmod>
     </url>
     <url>
         <loc>http://PROJECT.clojurewerkz.org/articles/articles/community.html</loc>
-        <lastmod>2013-07-30T18:13:10+02:00</lastmod>
+        <lastmod>2013-10-30T10:44:16+01:00</lastmod>
     </url>
     <url>
         <loc>http://PROJECT.clojurewerkz.org/articles/articles/getting_started.html</loc>
-        <lastmod>2013-09-10T15:28:05+02:00</lastmod>
+        <lastmod>2013-10-30T10:44:51+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PROJECT.clojurewerkz.org/articles/articles/getting_started.md.orig</loc>
+        <lastmod>2013-10-30T10:44:41+01:00</lastmod>
     </url>
     <url>
         <loc>http://PROJECT.clojurewerkz.org/articles/articles/guides.html</loc>
-        <lastmod>2013-07-30T18:13:10+02:00</lastmod>
+        <lastmod>2013-10-30T10:44:16+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://PROJECT.clojurewerkz.org/articles/articles/munich_2013_october_workshop.html
+        </loc>
+        <lastmod>2013-10-30T11:08:44+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://PROJECT.clojurewerkz.org/articles/articles/worskhop_questionnaire_report.html
+        </loc>
+        <lastmod>2013-10-30T10:44:16+01:00</lastmod>
     </url>
     <url>
         <loc>http://PROJECT.clojurewerkz.org/</loc>
-        <lastmod>2013-09-09T22:46:08+02:00</lastmod>
+        <lastmod>2013-10-30T11:17:55+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://PROJECT.clojurewerkz.org/index.html.orig</loc>
+        <lastmod>2013-10-30T10:44:53+01:00</lastmod>
     </url>
 </urlset>
