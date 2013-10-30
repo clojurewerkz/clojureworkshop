@@ -13,10 +13,6 @@
         <lastmod>2013-10-30T10:44:51+01:00</lastmod>
     </url>
     <url>
-        <loc>http://PROJECT.clojurewerkz.org/articles/articles/getting_started.md.orig</loc>
-        <lastmod>2013-10-30T10:44:41+01:00</lastmod>
-    </url>
-    <url>
         <loc>http://PROJECT.clojurewerkz.org/articles/articles/guides.html</loc>
         <lastmod>2013-10-30T10:44:16+01:00</lastmod>
     </url>
@@ -35,9 +31,5 @@
     <url>
         <loc>http://PROJECT.clojurewerkz.org/</loc>
         <lastmod>2013-10-30T11:17:55+01:00</lastmod>
-    </url>
-    <url>
-        <loc>http://PROJECT.clojurewerkz.org/index.html.orig</loc>
-        <lastmod>2013-10-30T10:44:53+01:00</lastmod>
     </url>
 </urlset>
